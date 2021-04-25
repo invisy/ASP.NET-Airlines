@@ -2,11 +2,19 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
+        <AssemblyName>Airlines.Infrastructure</AssemblyName>
+        <RootNamespace>Airlines.Infrastructure</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Data" />
-      <Folder Include="Identity" />
+      <PackageReference Include="Ardalis.Specification" Version="5.0.3" />
+      <PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="5.0.3" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.0-preview.3.21201.13" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0-preview.3.21201.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ApplicationCore\ApplicationCore.csproj" />
     </ItemGroup>
 
 </Project>
