@@ -2,6 +2,8 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
+        <AssemblyName>Airlines.Web</AssemblyName>
+        <RootNamespace>Airlines.Web</RootNamespace>
     </PropertyGroup>
 
 </Project>
