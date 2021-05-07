@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Airlines.Web.Models.FoundFlightsViewModel>
+
+@{
+    ViewData["Title"] = "FoundFlights";
+}
+
+<h1>FoundFlights</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartureCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IncomingCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartureDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IncomingDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MinimalPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlaneName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlaneModel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfAllPlaces)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfFreePlaces)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderButtonIsActive)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartureCity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IncomingCity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartureDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IncomingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MinimalPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlaneName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlaneModel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfAllPlaces)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfFreePlaces)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderButtonIsActive)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

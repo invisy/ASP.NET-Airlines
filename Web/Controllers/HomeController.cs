@@ -19,6 +19,16 @@ namespace Airlines.Web.Controllers
             return View();
         }
 
+        public IActionResult EnteringPrivateInfo()
+        {
+            return View();
+        }
+
+        public IActionResult FoundFlights()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

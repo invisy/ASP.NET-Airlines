@@ -1,8 +1,42 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model Airlines.Web.Models.FindingFlightViewModel
+
+@{
+    ViewData["Title"] = "Index";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h1 class="text-center">Пошук авіарейсів</h1>
+<hr />
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form asp-action="View">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SelectedDepartureCityId" class="control-label"></label>
+                <select name="SelectedDepartureCityId" asp-items="Model?.DepartureCities" class="form-control"></select>
+                <span asp-validation-for="SelectedDepartureCityId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SelectedIncomingCityId" class="control-label"></label>
+                <select name="SelectedIncomingCityId" asp-items="Model?.IncomingCities" class="form-control"></select>
+                <span asp-validation-for="SelectedIncomingCityId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepartureDate" class="control-label"></label>
+                <input asp-for="DepartureDate" class="form-control" />
+                <span asp-validation-for="DepartureDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IncomingDate" class="control-label"></label>
+                <input asp-for="IncomingDate" class="form-control" />
+                <span asp-validation-for="IncomingDate" class="text-danger"></span>
+            </div>
+            <div class="form-group text-center">
+                <input type="submit" value="Знайти" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
 </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
