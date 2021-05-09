@@ -20,7 +20,7 @@ namespace Airlines.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
-            services.BindInfrastructureLayer();
+            services.BindInfrastructureLayer(Configuration.GetConnectionString("AirlinesDB"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

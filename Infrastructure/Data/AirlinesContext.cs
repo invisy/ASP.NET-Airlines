@@ -7,7 +7,7 @@ namespace Airlines.Infrastructure.Data
     { 
         public AirlinesContext(DbContextOptions<AirlinesContext> options) : base(options)
         {
-            //Database.EnsureCreated();
+            Database.EnsureCreated();
         }
     }
 }
