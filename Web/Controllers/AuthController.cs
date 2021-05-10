@@ -9,20 +9,14 @@ namespace Airlines.Web.Controllers
 {
     public class AuthController : Controller
     {
-        // GET: Auth
-        public ActionResult Index()
+        // GET: Auth/Registration
+        public ActionResult Registration(int id)
         {
             return View();
         }
 
-        // GET: Auth/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Auth/Create
-        public ActionResult Create()
+        // GET: Auth/Login
+        public ActionResult Login()
         {
             return View();
         }

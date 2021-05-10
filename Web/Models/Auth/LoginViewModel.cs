@@ -5,7 +5,6 @@ namespace Airlines.Web.Models.Auth
 {
     public class LoginViewModel
     {
-        public string Id { get; set; }
         [Required]
         [StringLength(50)]
         [DataType(DataType.EmailAddress)]

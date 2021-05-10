@@ -38,8 +38,4 @@
       <_ContentIncludedByDefault Remove="Areas\Identity\Pages\_ViewStart.cshtml" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Views\Auth" />
-    </ItemGroup>
-
 </Project>
