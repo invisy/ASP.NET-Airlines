@@ -1,14 +1,13 @@
-﻿@model Airlines.Web.Models.Auth.LoginViewModel
+﻿@model Airlines.Web.Models.Account.LoginViewModel
 
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Вхід";
 }
 
-<h1>Login</h1>
+<h1 class="text-center">Вхід</h1>
 
-<h4>LoginViewModel</h4>
 <hr />
-<div class="row">
+<div class="row justify-content-center">
     <div class="col-md-4">
         <form asp-action="Login">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -28,14 +27,11 @@
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="hidden" asp-for="@Model.ReturnUrl" >
+                <input type="submit" value="Увійти" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

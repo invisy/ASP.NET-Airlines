@@ -9,9 +9,8 @@
     <ItemGroup>
       <PackageReference Include="Ardalis.Specification" Version="5.0.3" />
       <PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="5.0.3" />
-      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.0-preview.3.21201.13" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.5" />
       <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.5" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0-preview.3.21201.2" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.5" />
     </ItemGroup>
 

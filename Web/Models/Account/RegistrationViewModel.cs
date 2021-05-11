@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Airlines.Web.Models.Auth
+namespace Airlines.Web.Models.Account
 {
     public class RegistrationViewModel
     {
@@ -33,5 +33,6 @@ namespace Airlines.Web.Models.Auth
         [DataType(DataType.Password)]
         [DisplayName("Повторіть пароль")]
         public string RepeatPassword { get; set; }
+        public string ReturnUrl { get; set; }
     }
 }

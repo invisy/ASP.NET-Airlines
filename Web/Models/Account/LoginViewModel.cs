@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Airlines.Web.Models.Auth
+namespace Airlines.Web.Models.Account
 {
     public class LoginViewModel
     {
@@ -17,5 +17,6 @@ namespace Airlines.Web.Models.Auth
         public string Password { get; set; }
         [DisplayName("Запам'ятати?")]
         public bool Remember { get; set; }
+        public string ReturnUrl { get; set; }
     }
 }

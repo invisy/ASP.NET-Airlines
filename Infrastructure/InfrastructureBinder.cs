@@ -8,12 +8,13 @@ namespace Airlines.Infrastructure
 {
     public static class InfrastructureBinder
     {
-        public static IServiceCollection BindInfrastructureLayer(this IServiceCollection services, string connectionString)
+        public static IServiceCollection BindInfrastructureLayer(this IServiceCollection services, string connectionString, string identityConnectionString)
         {
             services.AddDbContext<AirlinesContext>(options =>
                 options.UseSqlServer(connectionString));
-            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<AirlinesContext>();
+
+            services.AddDbContext<AppIdentityDbContext>(options =>
+                options.UseSqlServer(identityConnectionString));
 
             return services;
         }
