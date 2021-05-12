@@ -11,13 +11,13 @@ namespace Airlines.Infrastructure.Identity
             await roleManager.CreateAsync(new IdentityRole(Roles.USERS));
             await roleManager.CreateAsync(new IdentityRole(Roles.ADMINISTRATORS));
 
-            var defaultUser = new ApplicationUser { UserName = "3dvlad2013@gmail.com", Email = "3dvlad2013@gmail.com" };
+            var defaultUser = new ApplicationUser { UserName = "3dvlad2013@gmail.com", Email = "3dvlad2013@gmail.com", Name = "Іван", Surname = "Іванов", Patronymic = "Іванович"};
             await userManager.CreateAsync(defaultUser, AuthorizationConstants.DEFAULT_PASSWORD);
             await userManager.AddToRoleAsync(defaultUser, Roles.USERS);
             
 
             string adminUserName = "admin@airlines.com";
-            var adminUser = new ApplicationUser { UserName = adminUserName, Email = adminUserName };
+            var adminUser = new ApplicationUser { UserName = adminUserName, Email = adminUserName, Name = "Петро", Surname = "Петров", Patronymic = "Петрович" };
             await userManager.CreateAsync(adminUser, AuthorizationConstants.DEFAULT_PASSWORD);
             await userManager.AddToRoleAsync(adminUser, Roles.ADMINISTRATORS);
         }

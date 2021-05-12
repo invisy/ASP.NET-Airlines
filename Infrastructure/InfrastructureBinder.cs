@@ -10,11 +10,24 @@ namespace Airlines.Infrastructure
     {
         public static IServiceCollection BindInfrastructureLayer(this IServiceCollection services, string connectionString, string identityConnectionString)
         {
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddDefaultUI()
+                .AddEntityFrameworkStores<AppIdentityDbContext>()
+                .AddDefaultTokenProviders();
+            
+            /*
             services.AddDbContext<AirlinesContext>(options =>
                 options.UseSqlServer(connectionString));
 
             services.AddDbContext<AppIdentityDbContext>(options =>
                 options.UseSqlServer(identityConnectionString));
+            */
+            
+            services.AddDbContext<AirlinesContext>(options =>
+                options.UseInMemoryDatabase(databaseName: "Test"));
+
+            services.AddDbContext<AppIdentityDbContext>(options =>
+                options.UseInMemoryDatabase(databaseName: "TestIdentity"));
 
             return services;
         }

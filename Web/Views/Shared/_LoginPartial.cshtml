@@ -4,11 +4,15 @@
 @inject SignInManager<ApplicationUser> _signInManager
 @inject UserManager<ApplicationUser> _userManager
 
+@{
+    var user = await _userManager.GetUserAsync(User);
+}
+
 <ul class="navbar-nav">
-    @if (_signInManager.IsSignedIn(User))
+    @if (_signInManager.IsSignedIn(User) && user != null)
     {
         <li class="nav-item">
-            <a id="manage" class="nav-link text-dark" asp-controller="Account" asp-action="Profile">Вітаємо, @_userManager.GetUserName(User)!</a>
+            <a id="manage" class="nav-link text-dark" asp-controller="Account" asp-action="Profile">Ви увійшли як @user.Surname @user.Name!</a>
         </li>
         <li class="nav-item">
             <form id="logoutForm" class="form-inline" asp-controller="Account" asp-action="Logout">

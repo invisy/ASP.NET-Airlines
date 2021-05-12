@@ -25,11 +25,6 @@ namespace Airlines.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
-
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddDefaultUI()
-                .AddEntityFrameworkStores<AppIdentityDbContext>()
-                .AddDefaultTokenProviders();
             
             string appConnectionString = Configuration.GetConnectionString("AirlinesIdentityDb");
             string identityConnectionString = Configuration.GetConnectionString("AirlinesIdentityDb");
