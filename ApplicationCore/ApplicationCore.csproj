@@ -10,11 +10,16 @@
       <Folder Include="DTOs" />
       <Folder Include="Exceptions" />
       <Folder Include="Mappers" />
-      <Folder Include="Specifications" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="Ardalis.Specification" Version="5.0.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+        <HintPath>..\..\..\..\..\Program Files\dotnet\shared\Microsoft.AspNetCore.App\5.0.5\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

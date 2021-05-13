@@ -1,4 +1,5 @@
 using System;
+using Airlines.ApplicationCore;
 using Airlines.Infrastructure;
 using Airlines.Infrastructure.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -24,13 +25,18 @@ namespace Airlines.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews().AddRazorRuntimeCompilation();
-            
-            string appConnectionString = Configuration.GetConnectionString("AirlinesIdentityDb");
+            string appConnectionString = Configuration.GetConnectionString("AirlinesApplicationDb");
             string identityConnectionString = Configuration.GetConnectionString("AirlinesIdentityDb");
 
+            services.BindCoreLayer();
             services.BindInfrastructureLayer(appConnectionString, identityConnectionString);
             
+            ConfigureAuthServices(services);
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+        }
+
+        public void ConfigureAuthServices(IServiceCollection services)
+        {
             services.Configure<CookiePolicyOptions>(options =>
             {
                 options.MinimumSameSitePolicy = SameSiteMode.Strict;

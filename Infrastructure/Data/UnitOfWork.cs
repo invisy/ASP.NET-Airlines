@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Airlines.ApplicationCore.Entities;
 using Airlines.ApplicationCore.Interfaces;
 
 namespace Airlines.Infrastructure.Data
@@ -10,10 +11,10 @@ namespace Airlines.Infrastructure.Data
         private readonly AirlinesContext _context;
         private readonly Dictionary<Type, IRepository> _repositories = new Dictionary<Type, IRepository>();
 
-        public UnitOfWork(AirlinesContext context)
+        public UnitOfWork(AirlinesContext context, IAsyncRepository<int, FlightInstance> flightInstRepository)
         {
             _context = context;
-            //_repositories.Add(...);
+            _repositories.Add(typeof(IAsyncRepository<int, FlightInstance>), flightInstRepository);
             //TODO
         }
         

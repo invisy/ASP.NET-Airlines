@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Airlines.Infrastructure.Data;
 using Airlines.Infrastructure.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -21,6 +22,9 @@ namespace Airlines.Web
                 var services = scope.ServiceProvider;
                 try
                 {
+                    var dbContext = services.GetRequiredService<AirlinesContext>();
+                    await AirlinesContextSeed.SeedAsync(dbContext);
+                    
                     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
                     await AppIdentityDbContextSeed.SeedAsync(userManager, roleManager);

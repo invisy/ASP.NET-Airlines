@@ -6,6 +6,9 @@
         public Flight Flight { get; private set; }
         public float TotalPrice { get; private set; }
 
+        public Ticket()
+        {
+        }
         
         public Ticket(Passenger passenger, Flight flight)
         {

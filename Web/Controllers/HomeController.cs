@@ -1,4 +1,9 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using Airlines.ApplicationCore.Entities;
+using Airlines.ApplicationCore.Interfaces;
 using Airlines.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -7,16 +12,27 @@ namespace Airlines.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IFlightsService _flightsService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IFlightsService flightsService)
         {
-            _logger = logger;
+            _flightsService = flightsService;
         }
 
         public IActionResult Index()
         {
             return View();
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> FindFlights(FindingFlightViewModel vm)
+        {
+            IReadOnlyList<FlightInstance> flights = await _flightsService.FindFlightInstances(vm.SelectedDepartureCityId ?? 0, 
+                                        vm.SelectedIncomingCityId ?? 0, 
+                                                    vm.DepartureDate ?? DateTime.Now, 
+                                                    vm.IncomingDate ?? DateTime.Now);
+            return Redirect("./");
         }
 
         public IActionResult EnteringPrivateInfo()
