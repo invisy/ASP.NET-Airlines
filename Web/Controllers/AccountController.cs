@@ -59,7 +59,7 @@ namespace Airlines.Web.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Помилка входу.");
+                    ModelState.AddModelError(string.Empty, "Помилка реєстрації.");
                     return View();
                 }
             }
