@@ -25,12 +25,7 @@ namespace Airlines.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.ApplyConfiguration(new CityConfiguration());
-            builder.ApplyConfiguration(new PlaneConfiguration());
-            builder.ApplyConfiguration(new FlightConfiguration());
-            builder.ApplyConfiguration(new FlightConfiguration());
-            builder.ApplyConfiguration(new FlightInstanceConfiguration());
-            //builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }
