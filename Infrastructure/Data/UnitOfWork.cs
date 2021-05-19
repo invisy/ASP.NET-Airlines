@@ -11,11 +11,12 @@ namespace Airlines.Infrastructure.Data
         private readonly AirlinesContext _context;
         private readonly Dictionary<Type, IRepository> _repositories = new Dictionary<Type, IRepository>();
 
-        public UnitOfWork(AirlinesContext context, IAsyncRepository<int, FlightInstance> flightInstRepository)
+        public UnitOfWork(AirlinesContext context, IAsyncRepository<int, FlightInstance> flightInstRepository, 
+            IAsyncRepository<int, City> cityRepository)
         {
             _context = context;
             _repositories.Add(typeof(IAsyncRepository<int, FlightInstance>), flightInstRepository);
-            //TODO
+            _repositories.Add(typeof(IAsyncRepository<int, City>), cityRepository);
         }
         
         public TRepository GetRepository<TRepository>() where TRepository : IRepository
