@@ -24,14 +24,21 @@ namespace Airlines.Web
                 {
                     var dbContext = services.GetRequiredService<AirlinesContext>();
                     await AirlinesContextSeed.SeedAsync(dbContext);
-                    
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString(), "An error occurred seeding the DB.");
+                }
+                
+                try
+                {
                     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
                     await AppIdentityDbContextSeed.SeedAsync(userManager, roleManager);
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.ToString(), "An error occurred seeding the DB.");
+                    Console.WriteLine(ex.ToString(), "An error occurred seeding the IdentityDB.");
                 }
             }
 

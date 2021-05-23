@@ -1,7 +1,7 @@
-﻿@model IEnumerable<Airlines.Web.Models.AdminPanel.CityViewModel>
+﻿@model IEnumerable<Airlines.Web.Models.AdminPanel.PlaneOverviewViewModel>
 
 @{
-    ViewData["Title"] = "Всі міста";
+    ViewData["Title"] = "Всі літаки";
 }
 
 <h1 class="text-center">@ViewData["Title"]</h1>
@@ -18,6 +18,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalSeats)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TravelClassesNames)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -29,6 +38,15 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalSeats)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TravelClassesNames)
             </td>
             <td>
                 @Html.ActionLink("Редагувати", "Edit", new { id=item.Id }) |

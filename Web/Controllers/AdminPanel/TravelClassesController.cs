@@ -12,14 +12,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace Airlines.Web.Controllers.AdminPanel
 {
     [Authorize(Roles=Roles.ADMINISTRATORS)]
-    public class CitiesController : Controller
+    public class TravelClassesController : Controller
     {
-        private readonly ICitiesService _citiesService;
-        private readonly IMapper<CityDTO, CityViewModel> _mapper;
+        private readonly ITravelClassesService _travelClassesService;
+        private readonly IMapper<TravelClassDTO, TravelClassViewModel> _mapper;
         
-        public CitiesController(ICitiesService citiesService, IMapper<CityDTO, CityViewModel> mapper)
+        public TravelClassesController(ITravelClassesService travelClassesService, IMapper<TravelClassDTO, TravelClassViewModel> mapper)
         {
-            _citiesService = citiesService;
+            _travelClassesService = travelClassesService;
             _mapper = mapper;
         }
         
@@ -32,9 +32,9 @@ namespace Airlines.Web.Controllers.AdminPanel
         // GET
         public async Task<IActionResult> All()
         {
-            var cities = await _citiesService.GetAll();
+            var travelClasses = await _travelClassesService.GetAll();
             
-            return View(_mapper.Map(cities));
+            return View(_mapper.Map(travelClasses));
         }
         
         // GET
@@ -46,10 +46,10 @@ namespace Airlines.Web.Controllers.AdminPanel
         // POST
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public async  Task<IActionResult> Create(CityViewModel model)
+        public async  Task<IActionResult> Create(TravelClassViewModel model)
         {
             if (ModelState.IsValid) {
-                await _citiesService.Create(_mapper.Map(model));
+                await _travelClassesService.Create(_mapper.Map(model));
                 return RedirectToAction("All");
             }
             
@@ -61,12 +61,13 @@ namespace Airlines.Web.Controllers.AdminPanel
         public async Task<IActionResult> Edit(int id)
         {
             try {
-                CityDTO dto = await _citiesService.GetById(id);
+                TravelClassDTO dto = await _travelClassesService.GetById(id);
+
                 return View(_mapper.Map(dto));
             }
             catch (EntityNotFoundException e)
             {
-                ModelState.AddModelError(string.Empty, CitiesExceptions.CityNotFound);
+                ModelState.AddModelError(string.Empty, TravelClassesExceptions.TravelClassNotFound);
                 return View();
             }
             catch (Exception e)
@@ -79,11 +80,11 @@ namespace Airlines.Web.Controllers.AdminPanel
         // POST
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public async Task<IActionResult> Edit(CityViewModel model)
+        public async Task<IActionResult> Edit(TravelClassViewModel model)
         {
             try {
                 if (ModelState.IsValid) {
-                    await _citiesService.Update(_mapper.Map(model));
+                    await _travelClassesService.Update(_mapper.Map(model));
                     return RedirectToAction("All");
                 }
                 
@@ -91,7 +92,7 @@ namespace Airlines.Web.Controllers.AdminPanel
                 return View();
             }
             catch (EntityNotFoundException) {
-                ModelState.AddModelError(string.Empty, CitiesExceptions.CityNotFound);
+                ModelState.AddModelError(string.Empty, TravelClassesExceptions.TravelClassNotFound);
                 return View();
             }
             catch (Exception) {
@@ -103,18 +104,15 @@ namespace Airlines.Web.Controllers.AdminPanel
         // GET
         public async  Task<IActionResult> Delete(int id)
         {
-            try
-            {
-                CityDTO dto = await _citiesService.GetById(id);
+            try {
+                TravelClassDTO dto = await _travelClassesService.GetById(id);
                 return View(_mapper.Map(dto));
             }
-            catch (EntityNotFoundException)
-            {
-                ModelState.AddModelError(string.Empty, CitiesExceptions.CityNotFound);
+            catch (EntityNotFoundException) {
+                ModelState.AddModelError(string.Empty, TravelClassesExceptions.TravelClassNotFound);
                 return View();
             }
-            catch (Exception)
-            {
+            catch (Exception) {
                 ModelState.AddModelError(string.Empty, GeneralExceptions.UnknownError);
                 return View();
             }
@@ -123,14 +121,14 @@ namespace Airlines.Web.Controllers.AdminPanel
         // POST
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public async  Task<IActionResult> Delete(CityViewModel model)
+        public async  Task<IActionResult> Delete(TravelClassViewModel model)
         {
             try {
-                await _citiesService.Delete(model.Id);
+                await _travelClassesService.Delete(model.Id);
                 return RedirectToAction("All");
             }
             catch (EntityNotFoundException) {
-                ModelState.AddModelError(string.Empty, CitiesExceptions.CityNotFound);
+                ModelState.AddModelError(string.Empty, TravelClassesExceptions.TravelClassNotFound);
                 return View();
             }
             catch (Exception) {

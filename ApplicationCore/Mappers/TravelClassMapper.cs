@@ -3,13 +3,14 @@ using Airlines.ApplicationCore.Entities;
 
 namespace Airlines.ApplicationCore.Mappers
 {
-    public class CityMapper : GenericMapper<City, CityDTO>
+    public class TravelClassMapper : GenericMapper<TravelClass, TravelClassDTO>
     {
-        public override CityDTO Map(City entity)
+        public override TravelClassDTO Map(TravelClass entity)
         {
-            CityDTO dto = new CityDTO();
+            TravelClassDTO dto = new TravelClassDTO();
             dto.Id = entity.Id;
             dto.Name = entity.Name;
+            dto.ClassPrice = entity.ClassPrice;
             
             return dto;
         }

@@ -2,7 +2,7 @@
 
 namespace Airlines.Web.Models.AdminPanel
 {
-    public class CityViewModel
+    public class PlaneFlatViewModel
     {
         [Display(Name = "Ідентифікатор")]
         public int Id { get; set; }
@@ -10,5 +10,13 @@ namespace Airlines.Web.Models.AdminPanel
         [StringLength(50, ErrorMessage = "Максимальна довжина - 50 знаків")]
         [Display(Name = "Назва")]
         public string Name { get; set; }
+        [Required]
+        [StringLength(10, ErrorMessage = "Максимальна довжина - 10 знаків")]
+        [Display(Name = "Модель")]
+        public string Model { get; set; }
+        [Required]
+        [Display(Name = "Кількість місць")]
+        [Range(0, 100000)]
+        public int TotalSeats { get; set; }
     }
 }

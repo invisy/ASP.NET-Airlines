@@ -1,7 +1,12 @@
 using System;
 using Airlines.ApplicationCore;
+using Airlines.ApplicationCore.DTOs;
+using Airlines.ApplicationCore.Entities;
+using Airlines.ApplicationCore.Interfaces;
+using Airlines.Web.Mappers;
 using Airlines.Infrastructure;
 using Airlines.Infrastructure.Identity;
+using Airlines.Web.Models.AdminPanel;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +35,12 @@ namespace Airlines.Web
 
             services.BindCoreLayer();
             services.BindInfrastructureLayer(appConnectionString, identityConnectionString);
+            
+            services.AddScoped<IMapper<TravelClassDTO, TravelClassViewModel>, TravelClassMapper>();
+            services.AddScoped<IMapper<CityDTO, CityViewModel>, CityMapper>();
+            services.AddScoped<IMapper<PlaneOverviewDTO,PlaneOverviewViewModel>, PlaneOverviewMapper>();
+            services.AddScoped<IMapper<PlaneFlatDTO, PlaneFlatViewModel>, PlaneFlatMapper>();
+                
             
             ConfigureAuthServices(services);
             services.AddControllersWithViews().AddRazorRuntimeCompilation();

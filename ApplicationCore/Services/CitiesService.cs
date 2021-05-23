@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Airlines.ApplicationCore.DTOs;
 using Airlines.ApplicationCore.Entities;
+using Airlines.ApplicationCore.Exceptions;
 using Airlines.ApplicationCore.Interfaces;
 
 namespace Airlines.ApplicationCore.Services
@@ -22,28 +23,34 @@ namespace Airlines.ApplicationCore.Services
         public async Task<CityDTO> GetById(int id)
         {
             var entity = await _repository.GetByIdAsync(id);
-            await _uow.SaveChanges();
+            
+            if(entity == null)
+                throw new EntityNotFoundException();
+
             return _mapper.Map(entity);
         }
         
         public async Task<IEnumerable<CityDTO>> GetAll()
         {
             var entities = await _repository.ListAllAsync();
-            await _uow.SaveChanges();
             return _mapper.Map(entities);
         }
         
-        public async Task Create(string name)
+        public async Task Create(CityDTO dto)
         {
-            City city = new City(name);
+            City city = new City(dto.Name);
             await _repository.AddAsync(city);
             await _uow.SaveChanges();
         }
         
-        public async Task Update(int id, string name)
+        public async Task Update(CityDTO dto)
         {
-            City city = await _repository.GetByIdAsync(id);
-            city.Name = name;
+            City city = await _repository.GetByIdAsync(dto.Id);
+            
+            if(city == null)
+                throw new EntityNotFoundException();
+            
+            city.Name = dto.Name;
             await _repository.UpdateAsync(city);
             await _uow.SaveChanges();
         }
@@ -51,6 +58,8 @@ namespace Airlines.ApplicationCore.Services
         public async Task Delete(int id)
         {
             City city = await _repository.GetByIdAsync(id);
+            if(city == null)
+                throw new EntityNotFoundException();
             _repository.Delete(city);
             await _uow.SaveChanges();
         }

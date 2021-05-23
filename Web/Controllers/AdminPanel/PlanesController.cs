@@ -12,15 +12,18 @@ using Microsoft.AspNetCore.Mvc;
 namespace Airlines.Web.Controllers.AdminPanel
 {
     [Authorize(Roles=Roles.ADMINISTRATORS)]
-    public class CitiesController : Controller
+    public class PlanesController : Controller
     {
-        private readonly ICitiesService _citiesService;
-        private readonly IMapper<CityDTO, CityViewModel> _mapper;
+        private readonly IMapper<PlaneOverviewDTO, PlaneOverviewViewModel> _planeOverviewMapper;
+        private readonly IMapper<PlaneFlatDTO, PlaneFlatViewModel> _planeFlatMapper;
+        private readonly IPlanesService _planesService;
         
-        public CitiesController(ICitiesService citiesService, IMapper<CityDTO, CityViewModel> mapper)
+        public PlanesController(IPlanesService planesService, IMapper<PlaneOverviewDTO, PlaneOverviewViewModel> planeOverviewMapper,
+            IMapper<PlaneFlatDTO, PlaneFlatViewModel> planeFlatMapper)
         {
-            _citiesService = citiesService;
-            _mapper = mapper;
+            _planesService = planesService;
+            _planeOverviewMapper = planeOverviewMapper;
+            _planeFlatMapper = planeFlatMapper;
         }
         
         // GET
@@ -32,9 +35,9 @@ namespace Airlines.Web.Controllers.AdminPanel
         // GET
         public async Task<IActionResult> All()
         {
-            var cities = await _citiesService.GetAll();
+            var planesOverview = await _planesService.GetAll();
             
-            return View(_mapper.Map(cities));
+            return View(_planeOverviewMapper.Map(planesOverview));
         }
         
         // GET
@@ -46,10 +49,10 @@ namespace Airlines.Web.Controllers.AdminPanel
         // POST
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public async  Task<IActionResult> Create(CityViewModel model)
+        public async Task<IActionResult> Create(PlaneFlatViewModel viewModel)
         {
             if (ModelState.IsValid) {
-                await _citiesService.Create(_mapper.Map(model));
+                await _planesService.Create(_planeFlatMapper.Map(viewModel));
                 return RedirectToAction("All");
             }
             
@@ -61,12 +64,12 @@ namespace Airlines.Web.Controllers.AdminPanel
         public async Task<IActionResult> Edit(int id)
         {
             try {
-                CityDTO dto = await _citiesService.GetById(id);
-                return View(_mapper.Map(dto));
+                PlaneFlatDTO dto = await _planesService.GetFlatById(id);
+                return View(_planeFlatMapper.Map(dto));
             }
             catch (EntityNotFoundException e)
             {
-                ModelState.AddModelError(string.Empty, CitiesExceptions.CityNotFound);
+                ModelState.AddModelError(string.Empty, PlanesExceptions.PlaneNotFound);
                 return View();
             }
             catch (Exception e)
@@ -79,11 +82,11 @@ namespace Airlines.Web.Controllers.AdminPanel
         // POST
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public async Task<IActionResult> Edit(CityViewModel model)
+        public async Task<IActionResult> Edit(PlaneFlatViewModel viewModel)
         {
             try {
                 if (ModelState.IsValid) {
-                    await _citiesService.Update(_mapper.Map(model));
+                    await _planesService.Update(_planeFlatMapper.Map(viewModel));
                     return RedirectToAction("All");
                 }
                 
@@ -91,7 +94,7 @@ namespace Airlines.Web.Controllers.AdminPanel
                 return View();
             }
             catch (EntityNotFoundException) {
-                ModelState.AddModelError(string.Empty, CitiesExceptions.CityNotFound);
+                ModelState.AddModelError(string.Empty, PlanesExceptions.PlaneNotFound);
                 return View();
             }
             catch (Exception) {
@@ -105,12 +108,12 @@ namespace Airlines.Web.Controllers.AdminPanel
         {
             try
             {
-                CityDTO dto = await _citiesService.GetById(id);
-                return View(_mapper.Map(dto));
+                PlaneOverviewDTO dto = await _planesService.GetOverviewById(id);
+                return View(_planeOverviewMapper.Map(dto));
             }
             catch (EntityNotFoundException)
             {
-                ModelState.AddModelError(string.Empty, CitiesExceptions.CityNotFound);
+                ModelState.AddModelError(string.Empty, PlanesExceptions.PlaneNotFound);
                 return View();
             }
             catch (Exception)
@@ -123,10 +126,10 @@ namespace Airlines.Web.Controllers.AdminPanel
         // POST
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public async  Task<IActionResult> Delete(CityViewModel model)
+        public async  Task<IActionResult> Delete(PlaneOverviewViewModel viewModel)
         {
             try {
-                await _citiesService.Delete(model.Id);
+                await _planesService.Delete(viewModel.Id);
                 return RedirectToAction("All");
             }
             catch (EntityNotFoundException) {
@@ -138,5 +141,6 @@ namespace Airlines.Web.Controllers.AdminPanel
                 return View();
             }
         }
+        
     }
 }

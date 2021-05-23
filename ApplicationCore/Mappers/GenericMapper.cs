@@ -7,8 +7,15 @@ namespace Airlines.ApplicationCore.Mappers
 {
     public abstract class GenericMapper<TEntity, TDto> : IMapper<TEntity, TDto>
     {
-        public abstract TDto Map(TEntity entity);
-        public abstract TEntity Map(TDto dto);
+        public virtual TDto Map(TEntity entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual TEntity Map(TDto dto)
+        {
+            throw new NotImplementedException();
+        }
 
         public virtual IEnumerable<TDto> Map(IEnumerable<TEntity> entityList)
         {

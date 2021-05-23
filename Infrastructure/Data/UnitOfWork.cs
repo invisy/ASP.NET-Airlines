@@ -12,11 +12,14 @@ namespace Airlines.Infrastructure.Data
         private readonly Dictionary<Type, IRepository> _repositories = new Dictionary<Type, IRepository>();
 
         public UnitOfWork(AirlinesContext context, IAsyncRepository<int, FlightInstance> flightInstRepository, 
-            IAsyncRepository<int, City> cityRepository)
+            IAsyncRepository<int, City> cityRepository, IAsyncRepository<int, TravelClass> travelClassRepository,
+            IAsyncRepository<int, Plane> planeRepository)
         {
             _context = context;
             _repositories.Add(typeof(IAsyncRepository<int, FlightInstance>), flightInstRepository);
             _repositories.Add(typeof(IAsyncRepository<int, City>), cityRepository);
+            _repositories.Add(typeof(IAsyncRepository<int, TravelClass>), travelClassRepository);
+            _repositories.Add(typeof(IAsyncRepository<int, Plane>), planeRepository);
         }
         
         public TRepository GetRepository<TRepository>() where TRepository : IRepository
