@@ -50,7 +50,7 @@ namespace Airlines.ApplicationCore.Services
             if(city == null)
                 throw new EntityNotFoundException();
             
-            city.Name = dto.Name;
+            city.UpdateName(dto.Name);
             await _repository.UpdateAsync(city);
             await _uow.SaveChanges();
         }

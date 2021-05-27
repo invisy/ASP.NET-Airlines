@@ -50,8 +50,8 @@ namespace Airlines.ApplicationCore.Services
             if(travelClass == null)
                 throw new EntityNotFoundException();
             
-            travelClass.Name = dto.Name;
-            travelClass.ClassPrice = dto.ClassPrice;
+            travelClass.UpdateName(dto.Name);
+            travelClass.UpdateClassPrice(dto.ClassPrice);
             await _repository.UpdateAsync(travelClass);
             await _uow.SaveChanges();
         }

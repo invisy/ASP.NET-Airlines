@@ -46,7 +46,7 @@
                 @Html.DisplayFor(modelItem => item.TotalSeats)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TravelClassesNames)
+                @String.Join(", ", item.TravelClassesNames)
             </td>
             <td>
                 @Html.ActionLink("Редагувати", "Edit", new { id=item.Id }) |

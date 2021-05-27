@@ -7,6 +7,6 @@ namespace Airlines.ApplicationCore.Interfaces
 {
     public interface IFlightsService
     {
-        Task<IReadOnlyList<FlightInstance>> FindFlightInstances(int departureCityId, int incomingCityId, DateTime departureDate, DateTime incomingDate);
+        //Task<IReadOnlyList<FlightInstance>> FindFlightInstances(int departureCityId, int incomingCityId, DateTime departureDate, DateTime incomingDate);
     }
 }

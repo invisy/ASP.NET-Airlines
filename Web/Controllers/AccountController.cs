@@ -55,7 +55,7 @@ namespace Airlines.Web.Controllers
                     if (!string.IsNullOrEmpty(registrationInput.ReturnUrl))
                         return Redirect(registrationInput.ReturnUrl);
                     
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Airport");
                 }
                 else
                 {
@@ -91,17 +91,13 @@ namespace Airlines.Web.Controllers
                     if (!string.IsNullOrEmpty(loginInput.ReturnUrl))
                         return Redirect(loginInput.ReturnUrl);
                     
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Airport");
                 }
-                if (result.IsLockedOut)
-                {
+                if (!result.IsLockedOut)
                     return RedirectToPage("./Lockout");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Ви ввели неправильний логін або пароль.");
-                    return View();
-                }
+                
+                ModelState.AddModelError(string.Empty, "Ви ввели неправильний логін або пароль.");
+                return View();
             }
             
             return View();

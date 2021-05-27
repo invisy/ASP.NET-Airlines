@@ -9,6 +9,7 @@ namespace Airlines.Infrastructure.Data.Config
         public void Configure(EntityTypeBuilder<TravelClass> builder)
         {
             builder.HasKey(x => x.Id);
+            builder.ToTable("TravelClasses");
         }
     }
 }

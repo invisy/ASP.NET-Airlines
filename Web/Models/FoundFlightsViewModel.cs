@@ -5,10 +5,11 @@ namespace Airlines.Web.Models
 {
     public class FoundFlightsViewModel
     {
+        public int Id { get; set; }
         [Display(Name = "Місто відправлення")]
-        public String DepartureCity { get; set; }
+        public string DepartureCity { get; set; }
         [Display(Name = "Місто прибуття")]
-        public String IncomingCity { get; set; }
+        public string IncomingCity { get; set; }
         [Display(Name = "Дата відправлення")]
         public DateTime DepartureDate { get; set; }
         [Display(Name = "Дата прибуття")]
@@ -16,9 +17,9 @@ namespace Airlines.Web.Models
         [Display(Name = "Ціна квитка від")]
         public int MinimalPrice { get; set; }
         [Display(Name = "Назва літака")]
-        public int PlaneName { get; set; }
+        public string PlaneName { get; set; }
         [Display(Name = "Модель літака")]
-        public int PlaneModel { get; set; }
+        public string PlaneModel { get; set; }
         [Display(Name = "Загальна кількість місць")]
         public int NumberOfAllPlaces { get; set; }
         [Display(Name = "Кількість вільних місць")]

@@ -4,7 +4,10 @@
     {
         public string Number { get; private set; }
         public TravelClass TravelClass { get; private set; }
-        public Ticket Ticket { get; set; }
+        public int TravelClassId { get; set; }
+        //public Ticket Ticket { get; set; }
+        //public int TicketId { get; set; }
+        public int FlightInstanceId { get; set; }
 
         public PlaneSeat()
         {

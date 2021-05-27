@@ -67,12 +67,12 @@ namespace Airlines.Web.Controllers.AdminPanel
                 PlaneFlatDTO dto = await _planesService.GetFlatById(id);
                 return View(_planeFlatMapper.Map(dto));
             }
-            catch (EntityNotFoundException e)
+            catch (EntityNotFoundException)
             {
                 ModelState.AddModelError(string.Empty, PlanesExceptions.PlaneNotFound);
                 return View();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 ModelState.AddModelError(string.Empty, GeneralExceptions.UnknownError);
                 return View();

@@ -82,9 +82,9 @@ namespace Airlines.ApplicationCore.Services
             if(plane == null)
                 throw new EntityNotFoundException();
             
-            plane.Name = dto.Name;
-            plane.Model = dto.Model;
-            plane.TotalSeats = dto.TotalSeats;
+            plane.UpdateName(dto.Name);
+            plane.UpdateModel(dto.Model);
+            plane.UpdateTotalSeats(dto.TotalSeats);
             
             await _repository.UpdateAsync(plane);
             await _uow.SaveChanges();

@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using Airlines.ApplicationCore.Entities;
 using Airlines.Infrastructure.Data.Config;
@@ -16,9 +17,10 @@ namespace Airlines.Infrastructure.Data
         public DbSet<FlightInstance> FlightInstances;
         public DbSet<Passenger> Passengers;
         public DbSet<Ticket> Tickets;
-        
+
         public AirlinesContext(DbContextOptions<AirlinesContext> options) : base(options)
         {
+            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
         
@@ -26,6 +28,8 @@ namespace Airlines.Infrastructure.Data
         {
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            
+            builder.Seed();
         }
     }
 }

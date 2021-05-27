@@ -6,6 +6,7 @@ using Airlines.ApplicationCore.Interfaces;
 using Airlines.Web.Mappers;
 using Airlines.Infrastructure;
 using Airlines.Infrastructure.Identity;
+using Airlines.Web.Models;
 using Airlines.Web.Models.AdminPanel;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -40,8 +41,9 @@ namespace Airlines.Web
             services.AddScoped<IMapper<CityDTO, CityViewModel>, CityMapper>();
             services.AddScoped<IMapper<PlaneOverviewDTO,PlaneOverviewViewModel>, PlaneOverviewMapper>();
             services.AddScoped<IMapper<PlaneFlatDTO, PlaneFlatViewModel>, PlaneFlatMapper>();
-                
-            
+            services.AddScoped<IMapper<FoundFlightsDTO, FoundFlightsViewModel>, FoundFlightsMapper>();
+            services.AddScoped<IMapper<SearchFlightsDTO, SearchFlightsViewModel>, SearchFlightsMapper>();
+
             ConfigureAuthServices(services);
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }
@@ -99,7 +101,7 @@ namespace Airlines.Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Airport}/{action=Index}/{id?}");
             });
         }
     }

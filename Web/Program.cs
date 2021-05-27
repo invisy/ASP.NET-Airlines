@@ -20,16 +20,7 @@ namespace Airlines.Web
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-                try
-                {
-                    var dbContext = services.GetRequiredService<AirlinesContext>();
-                    await AirlinesContextSeed.SeedAsync(dbContext);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.ToString(), "An error occurred seeding the DB.");
-                }
-                
+
                 try
                 {
                     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();

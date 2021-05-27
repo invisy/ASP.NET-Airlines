@@ -64,12 +64,12 @@ namespace Airlines.Web.Controllers.AdminPanel
                 CityDTO dto = await _citiesService.GetById(id);
                 return View(_mapper.Map(dto));
             }
-            catch (EntityNotFoundException e)
+            catch (EntityNotFoundException)
             {
                 ModelState.AddModelError(string.Empty, CitiesExceptions.CityNotFound);
                 return View();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 ModelState.AddModelError(string.Empty, GeneralExceptions.UnknownError);
                 return View();

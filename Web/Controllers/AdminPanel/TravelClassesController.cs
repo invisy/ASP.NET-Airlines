@@ -65,12 +65,12 @@ namespace Airlines.Web.Controllers.AdminPanel
 
                 return View(_mapper.Map(dto));
             }
-            catch (EntityNotFoundException e)
+            catch (EntityNotFoundException)
             {
                 ModelState.AddModelError(string.Empty, TravelClassesExceptions.TravelClassNotFound);
                 return View();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 ModelState.AddModelError(string.Empty, GeneralExceptions.UnknownError);
                 return View();
