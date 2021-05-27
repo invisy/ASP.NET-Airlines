@@ -1,19 +1,62 @@
-﻿@page
-@model Airlines.Web.Views.Airport.Buy
+﻿@model Airlines.Web.Models.TicketUserInfoViewModel
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Замовлення квитка";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div>
-    
+<h1 class="text-center">Введення особистих даних</h1>
+<hr />
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form asp-action="Buy">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SelectedTravelClassId" class="control-label"></label>
+                <select name="SelectedDepartureCityId" asp-items="Model.TravelClasses" class="form-control"></select>
+                <span asp-validation-for="SelectedTravelClassId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SelectedPlanePlaceId" class="control-label"></label>
+                <select name="SelectedDepartureCityId" asp-items="Model.PlanePlaces" class="form-control"></select>
+                <span asp-validation-for="SelectedPlanePlaceId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                <input asp-for="Surname" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Patronymic" class="control-label"></label>
+                <input asp-for="Patronymic" class="form-control" />
+                <span asp-validation-for="Patronymic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UniquePassportId" class="control-label"></label>
+                <input asp-for="UniquePassportId" class="form-control" />
+                <span asp-validation-for="UniquePassportId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Age" class="control-label"></label>
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group text-center">
+                <input type="submit" value="Перейти до оплати" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
 </div>
-</body>
-</html>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

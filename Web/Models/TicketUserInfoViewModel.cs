@@ -5,8 +5,15 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Airlines.Web.Models
 {
-    public class EnteringPrivateInfoViewModel
+    public class TicketUserInfoViewModel
     {
+        public List<SelectListItem> TravelClasses { get; set; }
+        public List<SelectListItem> PlanePlaces { get; set; }
+        
+        [Display(Name = "Виберіть клас")]
+        public int? SelectedTravelClassId { get; set; }
+        [Display(Name = "Виберіть місце")]
+        public int? SelectedPlanePlaceId { get; set; }
         [Display(Name = "Ім'я")]
         public string Name { get; set; }
         [Display(Name = "Прізвище")]
@@ -19,5 +26,7 @@ namespace Airlines.Web.Models
         public int Age { get; set; }
         [Display(Name = "Електронна пошта")]
         public string Email { get; set; }
+        [Display(Name = "Кінцева ціна")]
+        public float Price { get; set; }
     }
 }

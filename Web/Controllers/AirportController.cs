@@ -47,11 +47,6 @@ namespace Airlines.Web.Controllers
             return View("FoundFlights",_foundFlightsMapper.Map(flights));
         }
 
-        public IActionResult EnteringPrivateInfo()
-        {
-            return View();
-        }
-
         public IActionResult FoundFlights(IEnumerable<FoundFlightsViewModel> vms)
         {
             return View(vms);
