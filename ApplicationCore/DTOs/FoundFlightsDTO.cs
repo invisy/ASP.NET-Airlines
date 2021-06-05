@@ -12,7 +12,7 @@ namespace Airlines.ApplicationCore.DTOs
         public string PlaneName { get; set; }
         public string PlaneModel { get; set; }
         public int NumberOfAllPlaces { get; set; }
-        public int NumberOfFreePlaces { get; set; }
+        public int NumberOfFreePlaces { get; set; } = 5;
         public int MinimalPrice { get; set; }
     }
 }

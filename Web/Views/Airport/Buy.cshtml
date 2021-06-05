@@ -1,4 +1,5 @@
-﻿@model Airlines.Web.Models.TicketUserInfoViewModel
+﻿@model Airlines.Web.Models.EnteringTicketDataViewModel
+@TempData["SelectedPlanePlaceId"]
 
 @{
     ViewData["Title"] = "Замовлення квитка";
@@ -11,47 +12,49 @@
         <form asp-action="Buy">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="SelectedTravelClassId" class="control-label"></label>
-                <select name="SelectedDepartureCityId" asp-items="Model.TravelClasses" class="form-control"></select>
-                <span asp-validation-for="SelectedTravelClassId" class="text-danger"></span>
+                <label asp-for="SelectingPlace.SelectedTravelClassId" class="control-label"></label>
+                <select name="SelectingPlace.SelectedTravelClassId" onchange="this.form.submit()" asp-items="Model.SelectingPlace.TravelClasses" class="form-control"></select>
+                <span asp-validation-for="SelectingPlace.SelectedTravelClassId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SelectedPlanePlaceId" class="control-label"></label>
-                <select name="SelectedDepartureCityId" asp-items="Model.PlanePlaces" class="form-control"></select>
-                <span asp-validation-for="SelectedPlanePlaceId" class="text-danger"></span>
+                <label asp-for="SelectingPlace.SelectedPlanePlaceId" class="control-label"></label>
+                <select name="SelectingPlace.SelectedPlanePlaceId" onchange="this.form.submit()" asp-items="Model.SelectingPlace.PlanePlaces" class="form-control"></select>
+                <span asp-validation-for="SelectingPlace.SelectedPlanePlaceId" class="text-danger"></span>
+            </div>
+        </form>
+        <form asp-action="Send">
+            <div class="form-group">
+                <label asp-for="EnteringPersonalData.Name" class="control-label"></label>
+                <input asp-for="EnteringPersonalData.Name" class="form-control" />
+                <span asp-validation-for="EnteringPersonalData.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="EnteringPersonalData.Surname" class="control-label"></label>
+                <input asp-for="EnteringPersonalData.Surname" class="form-control" />
+                <span asp-validation-for="EnteringPersonalData.Surname" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Surname" class="control-label"></label>
-                <input asp-for="Surname" class="form-control" />
-                <span asp-validation-for="Surname" class="text-danger"></span>
+                <label asp-for="EnteringPersonalData.Patronymic" class="control-label"></label>
+                <input asp-for="EnteringPersonalData.Patronymic" class="form-control" />
+                <span asp-validation-for="EnteringPersonalData.Patronymic" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Patronymic" class="control-label"></label>
-                <input asp-for="Patronymic" class="form-control" />
-                <span asp-validation-for="Patronymic" class="text-danger"></span>
+                <label asp-for="EnteringPersonalData.UniquePassportId" class="control-label"></label>
+                <input asp-for="EnteringPersonalData.UniquePassportId" class="form-control" />
+                <span asp-validation-for="EnteringPersonalData.UniquePassportId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UniquePassportId" class="control-label"></label>
-                <input asp-for="UniquePassportId" class="form-control" />
-                <span asp-validation-for="UniquePassportId" class="text-danger"></span>
+                <label asp-for="EnteringPersonalData.Age" class="control-label"></label>
+                <input asp-for="EnteringPersonalData.Age" class="form-control" />
+                <span asp-validation-for="EnteringPersonalData.Age" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Age" class="control-label"></label>
-                <input asp-for="Age" class="form-control" />
-                <span asp-validation-for="Age" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+                <label asp-for="EnteringPersonalData.Email" class="control-label"></label>
+                <input asp-for="EnteringPersonalData.Email" class="form-control" />
+                <span asp-validation-for="EnteringPersonalData.Email" class="text-danger"></span>
             </div>
             <div class="form-group text-center">
-                <input type="submit" value="Перейти до оплати" class="btn btn-primary" />
+                <input type="submit" value="Купити" class="btn btn-primary" />
             </div>
         </form>
     </div>

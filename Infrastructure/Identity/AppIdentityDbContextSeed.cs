@@ -11,7 +11,7 @@ namespace Airlines.Infrastructure.Identity
             await roleManager.CreateAsync(new IdentityRole(Roles.USERS));
             await roleManager.CreateAsync(new IdentityRole(Roles.ADMINISTRATORS));
 
-            var defaultUser = new ApplicationUser { UserName = "3dvlad2013@gmail.com", Email = "3dvlad2013@gmail.com", Name = "Іван", Surname = "Іванов", Patronymic = "Іванович"};
+            var defaultUser = new ApplicationUser { UserName = "user1@airlines.com", Email = "user1@airlines.com", Name = "Іван", Surname = "Іванов", Patronymic = "Іванович"};
             await userManager.CreateAsync(defaultUser, AuthorizationConstants.DEFAULT_PASSWORD);
             await userManager.AddToRoleAsync(defaultUser, Roles.USERS);
             

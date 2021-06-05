@@ -13,13 +13,16 @@ namespace Airlines.Infrastructure.Data
 
         public UnitOfWork(AirlinesContext context, IAsyncRepository<int, FlightInstance> flightInstRepository, 
             IAsyncRepository<int, City> cityRepository, IAsyncRepository<int, TravelClass> travelClassRepository,
-            IAsyncRepository<int, Plane> planeRepository)
+            IAsyncRepository<int, Plane> planeRepository, IAsyncRepository<int, Ticket> ticketRepository, 
+            IAsyncRepository<int, PlaneSeat> planeSeatRepository)
         {
             _context = context;
             _repositories.Add(typeof(IAsyncRepository<int, FlightInstance>), flightInstRepository);
             _repositories.Add(typeof(IAsyncRepository<int, City>), cityRepository);
             _repositories.Add(typeof(IAsyncRepository<int, TravelClass>), travelClassRepository);
             _repositories.Add(typeof(IAsyncRepository<int, Plane>), planeRepository);
+            _repositories.Add(typeof(IAsyncRepository<int, Ticket>), ticketRepository);
+            _repositories.Add(typeof(IAsyncRepository<int, PlaneSeat>), planeSeatRepository);
         }
         
         public TRepository GetRepository<TRepository>() where TRepository : IRepository

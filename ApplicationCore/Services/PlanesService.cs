@@ -36,7 +36,7 @@ namespace Airlines.ApplicationCore.Services
             var planeSpec = new PlaneWithTravelClassesSpecification(id);
             var entity = await _repository.FirstOrDefaultAsync(planeSpec);
             if(entity == null)
-                throw new EntityNotFoundException();
+                throw new EntityNotFoundException(nameof(Plane));
 
             return _planeMapper.Map(entity);
         }
@@ -45,7 +45,7 @@ namespace Airlines.ApplicationCore.Services
         {
             var entity = await _repository.GetByIdAsync(id);
             if(entity == null)
-                throw new EntityNotFoundException();
+                throw new EntityNotFoundException(nameof(Plane));
 
             return _planeFlatMapper.Map(entity);
         }
@@ -55,7 +55,7 @@ namespace Airlines.ApplicationCore.Services
             var planeSpec = new PlaneWithTravelClassesSpecification(id);
             var entity = await _repository.FirstOrDefaultAsync(planeSpec);
             if(entity == null)
-                throw new EntityNotFoundException();
+                throw new EntityNotFoundException(nameof(Plane));
 
             return _planeOverviewMapper.Map(entity);
         }
@@ -80,7 +80,7 @@ namespace Airlines.ApplicationCore.Services
             Plane plane = await _repository.GetByIdAsync(dto.Id);
             
             if(plane == null)
-                throw new EntityNotFoundException();
+                throw new EntityNotFoundException(nameof(Plane));
             
             plane.UpdateName(dto.Name);
             plane.UpdateModel(dto.Model);
@@ -94,7 +94,7 @@ namespace Airlines.ApplicationCore.Services
         {
             Plane plane = await _repository.GetByIdAsync(id);
             if(plane == null)
-                throw new EntityNotFoundException();
+                throw new EntityNotFoundException(nameof(Plane));
             _repository.Delete(plane);
             await _uow.SaveChanges();
         }
@@ -103,8 +103,10 @@ namespace Airlines.ApplicationCore.Services
         {
             Plane plane = await _repository.GetByIdAsync(planeId);
             TravelClass travelClass = await _travelClassRepository.GetByIdAsync(travelClassId);
-            if(plane == null || travelClass == null)
-                throw new EntityNotFoundException();
+            if(plane == null)
+                throw new EntityNotFoundException(nameof(Plane));
+            if(travelClass == null)
+                throw new EntityNotFoundException(nameof(TravelClass));
             plane.AddTravelClass(travelClass);
             await _repository.UpdateAsync(plane);
             await _uow.SaveChanges();
@@ -114,8 +116,10 @@ namespace Airlines.ApplicationCore.Services
         {
             Plane plane = await _repository.GetByIdAsync(planeId);
             TravelClass travelClass = plane.TravelClasses.FirstOrDefault(x => x.Id == travelClassId);
-            if(plane == null || travelClass == null)
-                throw new EntityNotFoundException();
+            if(plane == null)
+                throw new EntityNotFoundException(nameof(Plane));
+            if(travelClass == null)
+                throw new EntityNotFoundException(nameof(TravelClass));
             plane.RemoveTravelClass(travelClass);
             await _repository.UpdateAsync(plane);
             await _uow.SaveChanges();

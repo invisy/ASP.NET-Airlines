@@ -25,7 +25,7 @@ namespace Airlines.ApplicationCore.Services
             var entity = await _repository.GetByIdAsync(id);
             
             if(entity == null)
-                throw new EntityNotFoundException();
+                throw new EntityNotFoundException(nameof(City));
 
             return _mapper.Map(entity);
         }
@@ -48,7 +48,7 @@ namespace Airlines.ApplicationCore.Services
             City city = await _repository.GetByIdAsync(dto.Id);
             
             if(city == null)
-                throw new EntityNotFoundException();
+                throw new EntityNotFoundException(nameof(City));
             
             city.UpdateName(dto.Name);
             await _repository.UpdateAsync(city);
@@ -59,7 +59,7 @@ namespace Airlines.ApplicationCore.Services
         {
             City city = await _repository.GetByIdAsync(id);
             if(city == null)
-                throw new EntityNotFoundException();
+                throw new EntityNotFoundException(nameof(City));
             _repository.Delete(city);
             await _uow.SaveChanges();
         }

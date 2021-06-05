@@ -3,24 +3,14 @@
     public class Ticket : BaseEntity<int>
     {
         public Passenger Passenger { get; private set; }
-        public int PassengerId { get; set; }
-        public Flight Flight { get; private set; }
-        public int FlightId { get; set; }
-        public float TotalPrice { get; private set; }
-
-        public Ticket()
-        {
-        }
+        public float TotalPrice { get; set; }
         
-        public Ticket(Passenger passenger, Flight flight)
+        //EF
+        public Ticket() { }
+        
+        public Ticket(Passenger passenger)
         {
             Passenger = passenger;
-            Flight = flight;
-        }
-        
-        private float CalculateTotalPrice()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

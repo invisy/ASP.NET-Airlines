@@ -6,7 +6,7 @@ namespace Airlines.ApplicationCore.Specifications
 {
     public sealed class FindFlightsSpecification : Specification<FlightInstance>
     {
-        public FindFlightsSpecification(int departureCityId, int incomingCityId, DateTime departureDate, DateTime incomingDate) : base()
+        public FindFlightsSpecification(int departureCityId, int incomingCityId, DateTime departureDate, DateTime incomingDate)
         {
             Query
                 .Where(o => DateTime.Compare(o.DepartureDate.Date, departureDate.Date) == 0 &&

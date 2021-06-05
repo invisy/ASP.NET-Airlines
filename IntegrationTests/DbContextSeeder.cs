@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Airlines.ApplicationCore.Entities;
+using Airlines.Infrastructure.Data.Interafaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
-namespace Airlines.Infrastructure.Data
+namespace IntegrationTests
 {
-    public static class AirlinesContextSeed
+    public class DbContextTestSeeder : IDbContextSeeder
     {
-        public static void Seed(this ModelBuilder modelBuilder)
+        public void Seed(ModelBuilder modelBuilder)
         {
             //City
             modelBuilder.Entity<City>()
@@ -66,6 +64,31 @@ namespace Airlines.Infrastructure.Data
                     new { Id = 4, DepartureDate = date1, IncomingDate = date2, FlightId = 3 }
                 );
             
+            //PlaneSeats
+
+            modelBuilder.Entity<PlaneSeat>()
+                .HasData(
+                    new { Id = 1, Number="1-A", TravelClassId = 1, FlightInstanceId = 1 },
+                    new { Id = 2, Number="1-Б", TravelClassId = 1, FlightInstanceId = 1 },
+                    new { Id = 3, Number="2-A", TravelClassId = 1, FlightInstanceId = 1 },
+                    new { Id = 4, Number="2-Б", TravelClassId = 1, FlightInstanceId = 1 },
+                    new { Id = 5, Number="3-А", TravelClassId = 2, FlightInstanceId = 1 },
+                    new { Id = 6, Number="1-A", TravelClassId = 1, FlightInstanceId = 2 },
+                    new { Id = 7, Number="1-Б", TravelClassId = 1, FlightInstanceId = 2 },
+                    new { Id = 8, Number="2-A", TravelClassId = 1, FlightInstanceId = 2 },
+                    new { Id = 9, Number="2-Б", TravelClassId = 1, FlightInstanceId = 2 },
+                    new { Id = 10, Number="3-А", TravelClassId = 2, FlightInstanceId = 2 },
+                    new { Id = 11, Number="1-A", TravelClassId = 1, FlightInstanceId = 3 },
+                    new { Id = 12, Number="1-Б", TravelClassId = 1, FlightInstanceId = 3 },
+                    new { Id = 13, Number="2-A", TravelClassId = 1, FlightInstanceId = 3 },
+                    new { Id = 14, Number="2-Б", TravelClassId = 2, FlightInstanceId = 3 },
+                    new { Id = 15, Number="3-А", TravelClassId = 3, FlightInstanceId = 3 },
+                    new { Id = 16, Number="1-A", TravelClassId = 1, FlightInstanceId = 4 },
+                    new { Id = 17, Number="1-Б", TravelClassId = 1, FlightInstanceId = 4 },
+                    new { Id = 18, Number="2-A", TravelClassId = 2, FlightInstanceId = 4 },
+                    new { Id = 19, Number="2-Б", TravelClassId = 2, FlightInstanceId = 4 },
+                    new { Id = 20, Number="3-А", TravelClassId = 3, FlightInstanceId = 4 }
+                );
         }
     }
 }

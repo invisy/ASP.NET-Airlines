@@ -11,6 +11,7 @@ using Airlines.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace Airlines.Web.Controllers
 {
@@ -35,7 +36,7 @@ namespace Airlines.Web.Controllers
         {
             var cities = await _citiesService.GetAll();
             vm.DepartureCities = new SelectList(cities, "Id", "Name");
-            vm.IncomingCities = new SelectList(cities, "Id", "Name");
+            vm.IncomingCities = vm.DepartureCities;
             return View(vm);
         }
         
@@ -52,9 +53,28 @@ namespace Airlines.Web.Controllers
             return View(vms);
         }
         
-        public IActionResult Buy(int id)
+        public async Task<IActionResult> Buy(int id)
         {
-            return View();
+            var travelClasses = await _airportService.GetFlightAvailableTravelClasses(id);
+            var planeSeats = await _airportService.GetFlightFreePlaneSeats(id, travelClasses.FirstOrDefault().Id);
+            SelectingPlaceViewModel selectingPlaceVm = new SelectingPlaceViewModel();
+            selectingPlaceVm.TravelClasses = new SelectList(travelClasses, "Id", "Name");
+            selectingPlaceVm.PlanePlaces = new SelectList(planeSeats, "Id", "Number");
+            EnteringTicketDataViewModel ticketDataVm = new EnteringTicketDataViewModel() {SelectingPlace = selectingPlaceVm};
+            TempData["SelectedPlanePlaceId"] = Convert.ToInt32(selectingPlaceVm.PlanePlaces.Select(x => x.Value).FirstOrDefault());
+            return View(ticketDataVm);
+        }
+        
+        [HttpPost]
+        public async Task<IActionResult> Buy(int id, EnteringTicketDataViewModel ticketDataVm)
+        {
+            SelectingPlaceViewModel selectingPlaceVm = ticketDataVm.SelectingPlace;
+            var travelClasses = await _airportService.GetFlightAvailableTravelClasses(id);
+            var planeSeats = await _airportService.GetFlightFreePlaneSeats(id, selectingPlaceVm.SelectedTravelClassId);
+            selectingPlaceVm.TravelClasses = new SelectList(travelClasses, "Id", "Name", selectingPlaceVm.SelectedTravelClassId);
+            selectingPlaceVm.PlanePlaces = new SelectList(planeSeats, "Id", "Number", selectingPlaceVm.SelectedPlanePlaceId);
+            TempData["SelectedPlanePlaceId"] = selectingPlaceVm.SelectedPlanePlaceId;
+            return View(ticketDataVm);
         }
 
         public IActionResult Privacy()

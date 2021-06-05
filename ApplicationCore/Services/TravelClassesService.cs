@@ -25,7 +25,7 @@ namespace Airlines.ApplicationCore.Services
             var entity = await _repository.GetByIdAsync(id);
             
             if(entity == null)
-                throw new EntityNotFoundException();
+                throw new EntityNotFoundException(nameof(TravelClass));
 
             return _mapper.Map(entity);
         }
@@ -48,7 +48,7 @@ namespace Airlines.ApplicationCore.Services
             TravelClass travelClass = await _repository.GetByIdAsync(dto.Id);
             
             if(travelClass == null)
-                throw new EntityNotFoundException();
+                throw new EntityNotFoundException(nameof(TravelClass));
             
             travelClass.UpdateName(dto.Name);
             travelClass.UpdateClassPrice(dto.ClassPrice);
@@ -60,7 +60,7 @@ namespace Airlines.ApplicationCore.Services
         {
             TravelClass travelClass = await _repository.GetByIdAsync(id);
             if(travelClass == null)
-                throw new EntityNotFoundException();
+                throw new EntityNotFoundException(nameof(TravelClass));
             _repository.Delete(travelClass);
             await _uow.SaveChanges();
         }

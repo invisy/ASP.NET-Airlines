@@ -25,22 +25,22 @@ namespace Airlines.ApplicationCore.Entities
         
         public void UpdateName(string name)
         {
-            if (name.Length < 1 && name.Length > 50)
-                throw new ArgumentException(nameof(name));
+            if (name.Length is 0 or > 50)
+                throw new ArgumentOutOfRangeException(nameof(name));
             Name = name;
         }
         
         public void UpdateModel(string model)
         {
-            if (model.Length == 0 && model.Length > 50)
-                throw new ArgumentException(nameof(model));
+            if (model.Length is 0 or > 50)
+                throw new ArgumentOutOfRangeException(nameof(model));
             Model = model;
         }
         
         public void UpdateTotalSeats(int seats)
         {
-            if (seats == 0)
-                throw new ArgumentNullException(nameof(seats));
+            if (seats <= 0)
+                throw new ArgumentOutOfRangeException(nameof(seats));
             TotalSeats = seats;
         }
 

@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using Airlines.ApplicationCore.Entities;
 using Airlines.Infrastructure.Data.Config;
+using Airlines.Infrastructure.Data.Interafaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Airlines.Infrastructure.Data
@@ -18,8 +19,11 @@ namespace Airlines.Infrastructure.Data
         public DbSet<Passenger> Passengers;
         public DbSet<Ticket> Tickets;
 
-        public AirlinesContext(DbContextOptions<AirlinesContext> options) : base(options)
+        private readonly IDbContextSeeder _dbContextSeeder;
+
+        public AirlinesContext(DbContextOptions<AirlinesContext> options, IDbContextSeeder dbContextSeeder) : base(options)
         {
+            _dbContextSeeder = dbContextSeeder;
             Database.EnsureDeleted();
             Database.EnsureCreated();
         }
@@ -28,8 +32,7 @@ namespace Airlines.Infrastructure.Data
         {
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-            
-            builder.Seed();
+            _dbContextSeeder.Seed(builder);
         }
     }
 }

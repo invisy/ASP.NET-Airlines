@@ -1,22 +1,28 @@
-﻿namespace Airlines.ApplicationCore.Entities
+﻿using System;
+
+namespace Airlines.ApplicationCore.Entities
 {
     public class PlaneSeat : BaseEntity<int>
     {
         public string Number { get; private set; }
         public TravelClass TravelClass { get; private set; }
-        public int TravelClassId { get; set; }
-        //public Ticket Ticket { get; set; }
-        //public int TicketId { get; set; }
-        public int FlightInstanceId { get; set; }
-
-        public PlaneSeat()
-        {
-        }
+        public int TravelClassId { get; private set; }
+        public Ticket Ticket { get; set; }
+        public int? TicketId { get; private set; }
+        public virtual int FlightInstanceId { get; private set; }
         
-        public PlaneSeat(string number, TravelClass travelClass)
+        public PlaneSeat() {}
+        public PlaneSeat(string number, int travelClassId)
         {
             Number = number;
-            TravelClass = travelClass;
+            TravelClassId = travelClassId;
+        }
+        
+        public void UpdateNumber(string number)
+        {
+            if (number.Length is 0 and < 10)
+                throw new ArgumentOutOfRangeException(nameof(number));
+            Number = number;
         }
     }
 }

@@ -6,6 +6,8 @@ namespace Airlines.ApplicationCore.Entities
     public class City : BaseEntity<int>
     {
         public string Name { get; private set; }
+
+        public City() { }
         
         public City(string name)
         {
@@ -14,8 +16,8 @@ namespace Airlines.ApplicationCore.Entities
 
         public void UpdateName(string name)
         {
-            if (name.Length == 0 && name.Length > 50)
-                throw new ArgumentException(nameof(name));
+            if (name.Length is 0 or > 50)
+                throw new ArgumentOutOfRangeException(nameof(name));
             Name = name;
         }
     }

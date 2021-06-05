@@ -1,0 +1,10 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=30F81B28_002D1D8B_002D4B18_002D91D3_002D4AAF61BEB196_002Fd_003ASpecifications_002Ff_003AGetFlightTravelClassesSpecification_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4e175879_002Df454_002D4886_002D92fb_002De0110b8ed09d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from &amp;lt;UnitTests&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Or&gt;&#xD;
+    &lt;Project Location="C:\Users\Vlad_\RiderProjects\Airlines\UnitTests" Presentation="&amp;lt;UnitTests&amp;gt;" /&gt;&#xD;
+    &lt;ProjectFile&gt;1D1A9C48-4902-4E74-8DD4-4ED3DFE7760D/d:Web/d:Controllers/f:CitiesControllerIndex.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;1D1A9C48-4902-4E74-8DD4-4ED3DFE7760D/d:Web/d:Controllers/f:CitiesControllerAll.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;1D1A9C48-4902-4E74-8DD4-4ED3DFE7760D/d:Web/d:Controllers/f:CitiesControllerCreate.cs&lt;/ProjectFile&gt;&#xD;
+  &lt;/Or&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

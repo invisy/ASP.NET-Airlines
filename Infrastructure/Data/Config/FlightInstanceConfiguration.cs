@@ -12,8 +12,7 @@ namespace Airlines.Infrastructure.Data.Config
             
             builder.HasOne(x => x.Flight)
                 .WithMany()
-                .HasForeignKey(x => x.FlightId)
-                ;
+                .HasForeignKey(x => x.FlightId);
             
             builder.ToTable("FlightInstances");
         }

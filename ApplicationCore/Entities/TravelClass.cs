@@ -10,6 +10,7 @@ namespace Airlines.ApplicationCore.Entities
 
         public IEnumerable<Plane> Planes { get; private set; }
 
+        public TravelClass() {}
         public TravelClass(string name, float classPrice)
         {
             UpdateName(name);
@@ -18,15 +19,15 @@ namespace Airlines.ApplicationCore.Entities
         
         public void UpdateName(string name)
         {
-            if (name.Length == 0 && name.Length > 50)
-                throw new ArgumentException(nameof(name));
+            if (name.Length is 0 or > 50)
+                throw new ArgumentOutOfRangeException(nameof(name));
             Name = name;
         }
         
         public void UpdateClassPrice(float price)
         {
-            if (price > 1000000)
-                throw new ArgumentException(nameof(price));
+            if (price is > 1000000 or < 0)
+                throw new ArgumentOutOfRangeException(nameof(price));
             ClassPrice = price;
         }
     }

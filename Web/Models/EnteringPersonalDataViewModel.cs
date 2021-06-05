@@ -5,27 +5,27 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Airlines.Web.Models
 {
-    public class TicketUserInfoViewModel
+    public class EnteringPersonalDataViewModel
     {
-        public List<SelectListItem> TravelClasses { get; set; }
-        public List<SelectListItem> PlanePlaces { get; set; }
-        
-        [Display(Name = "Виберіть клас")]
-        public int? SelectedTravelClassId { get; set; }
-        [Display(Name = "Виберіть місце")]
-        public int? SelectedPlanePlaceId { get; set; }
+        [Required]
         [Display(Name = "Ім'я")]
         public string Name { get; set; }
+        [Required]
         [Display(Name = "Прізвище")]
         public string Surname { get; set; }
+        [Required]
         [Display(Name = "По батькові")]
         public string Patronymic { get; set; }
+        [Required]
         [Display(Name = "Номер паспорта")]
         public string UniquePassportId { get; set; }
+        [Required]
         [Display(Name = "Вік")]
         public int Age { get; set; }
+        [Required]
         [Display(Name = "Електронна пошта")]
         public string Email { get; set; }
+        [Required]
         [Display(Name = "Кінцева ціна")]
         public float Price { get; set; }
     }

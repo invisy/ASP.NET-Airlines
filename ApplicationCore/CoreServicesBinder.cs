@@ -17,8 +17,8 @@ namespace Airlines.ApplicationCore
             services.AddScoped<IMapper<Plane, PlaneOverviewDTO>, PlaneOverviewMapper>();
             services.AddScoped<IMapper<Plane, PlaneFlatDTO>, PlaneFlatMapper>();
             services.AddScoped<IMapper<FlightInstance, FoundFlightsDTO>, FoundFlightsMapper>();
+            services.AddScoped<IMapper<PlaneSeat, PlaneSeatFlatDTO>, PlaneSeatFlatMapper>();
             
-            services.AddScoped<IFlightsService, FlightsService>();
             services.AddScoped<ICitiesService, CitiesService>();
             services.AddScoped<ITravelClassesService, TravelClassesService>();
             services.AddScoped<IPlanesService, PlanesService>();

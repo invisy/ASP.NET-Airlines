@@ -1,4 +1,6 @@
 using System;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 using Airlines.ApplicationCore;
 using Airlines.ApplicationCore.DTOs;
 using Airlines.ApplicationCore.Entities;
@@ -16,6 +18,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.WebEncoders;
 
 namespace Airlines.Web
 {
@@ -44,8 +47,16 @@ namespace Airlines.Web
             services.AddScoped<IMapper<FoundFlightsDTO, FoundFlightsViewModel>, FoundFlightsMapper>();
             services.AddScoped<IMapper<SearchFlightsDTO, SearchFlightsViewModel>, SearchFlightsMapper>();
 
+            services.Configure<WebEncoderOptions>(options =>
+            {
+                options.TextEncoderSettings = new TextEncoderSettings(UnicodeRanges.All);
+            });
+            
             ConfigureAuthServices(services);
-            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddControllersWithViews()
+                .AddSessionStateTempDataProvider()
+                .AddRazorRuntimeCompilation();
+            services.AddSession();
         }
 
         public void ConfigureAuthServices(IServiceCollection services)
@@ -96,6 +107,8 @@ namespace Airlines.Web
 
             app.UseAuthentication();
             app.UseAuthorization();
+            
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

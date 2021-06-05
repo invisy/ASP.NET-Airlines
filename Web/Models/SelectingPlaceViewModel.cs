@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Airlines.Web.Models
 {
     public class SelectingPlaceViewModel
     {
-        public List<SelectListItem> TravelClasses { get; set; }
-        public List<SelectListItem> PlanePlaces { get; set; }
+        public SelectList TravelClasses { get; set; }
+        public SelectList PlanePlaces { get; set; }
+        [Required]
         [Display(Name = "Виберіть клас")]
-        public int? SelectedTravelClassId { get; set; }
+        public int SelectedTravelClassId { get; set; }
+        [Required]
         [Display(Name = "Виберіть місце")]
-        public int? SelectedPlanePlaceId { get; set; }
-        [Display(Name = "Кінцева ціна")]
-        public float Price { get; set; }
+        public int SelectedPlanePlaceId { get; set; }
     }
 }
