@@ -42,8 +42,8 @@ namespace Airlines.Web
                 string applicationDatabaseName = Configuration["Database"];
                 string identityDatabaseName = Configuration["IdentityDatabase"];
                 
-                var appConnectionString = $"Server={server},{port};Initial Catalog={applicationDatabaseName};User ID={user};Password={password};Integrated Security=true";
-                var identityConnectionString = $"Server={server},{port};Initial Catalog={identityDatabaseName};User ID={user};Password={password};Integrated Security=true";
+                var appConnectionString = $"Server={server},{port};Initial Catalog={applicationDatabaseName};User ID={user};Password={password}";
+                var identityConnectionString = $"Server={server},{port};Initial Catalog={identityDatabaseName};User ID={user};Password={password}";
             #else
                 string appConnectionString = Configuration.GetConnectionString("AirlinesApplicationDb");
                 string identityConnectionString = Configuration.GetConnectionString("AirlinesIdentityDb");

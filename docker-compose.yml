@@ -3,7 +3,7 @@ services:
     ms-sql:
         image: mcr.microsoft.com/mssql/server:2019-latest
         environment:
-            SA_PASSWORD: "suPer$ecret5Assword"
+            SA_PASSWORD: "suPerSecret5Assword"
             ACCEPT_EULA: "Y"
             MSSQL_PID: Express
         ports:
@@ -13,10 +13,10 @@ services:
             dockerfile: Web/Dockerfile
             context: .
         environment:
-            DbServer: tcp:ms-sql-server
+            DbServer: tcp:ms-sql
             DbPort: "1433"
             DbUser: "sa"
-            DbPassword: "suPer$ecret5Assword"
+            DbPassword: "suPerSecret5Assword"
             Database: "AirlinesApplicationDb"
             IdentityDatabase: "AirlinesIdentityDb"
         ports:
