@@ -24,7 +24,6 @@ namespace Airlines.Infrastructure.Data
         public AirlinesContext(DbContextOptions<AirlinesContext> options, IDbContextSeeder dbContextSeeder) : base(options)
         {
             _dbContextSeeder = dbContextSeeder;
-            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
         
