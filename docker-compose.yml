@@ -3,7 +3,7 @@ services:
     ms-sql:
         image: mcr.microsoft.com/mssql/server:2019-latest
         environment:
-            SA_PASSWORD: "suPerSecret5Assword"
+            SA_PASSWORD: "suPer$ecret5Assword"
             ACCEPT_EULA: "Y"
             MSSQL_PID: Express
         ports:
@@ -16,7 +16,7 @@ services:
             DbServer: tcp:ms-sql-server
             DbPort: "1433"
             DbUser: "sa"
-            DbPassword: "suPerSecret5Assword"
+            DbPassword: "suPer$ecret5Assword"
             Database: "AirlinesApplicationDb"
             IdentityDatabase: "AirlinesIdentityDb"
         ports:
