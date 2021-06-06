@@ -7,4 +7,6 @@
     &lt;ProjectFile&gt;1D1A9C48-4902-4E74-8DD4-4ED3DFE7760D/d:Web/d:Controllers/f:CitiesControllerAll.cs&lt;/ProjectFile&gt;&#xD;
     &lt;ProjectFile&gt;1D1A9C48-4902-4E74-8DD4-4ED3DFE7760D/d:Web/d:Controllers/f:CitiesControllerCreate.cs&lt;/ProjectFile&gt;&#xD;
   &lt;/Or&gt;&#xD;
-&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
+&lt;/SessionState&gt;</s:String>
+	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=1d1a9c48_002D4902_002D4e74_002D8dd4_002D4ed3dfe7760d_0023IntegrationTests/@EntryIndexedValue">True</s:Boolean>
+	</wpf:ResourceDictionary>

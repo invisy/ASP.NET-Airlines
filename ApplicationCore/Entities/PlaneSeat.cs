@@ -20,7 +20,7 @@ namespace Airlines.ApplicationCore.Entities
         
         public void UpdateNumber(string number)
         {
-            if (number.Length is 0 and < 10)
+            if (number.Length is 0 or > 10)
                 throw new ArgumentOutOfRangeException(nameof(number));
             Number = number;
         }

@@ -12,16 +12,18 @@ namespace UnitTests.ApplicationCore.Services.CitiesServiceTests
     {
         private readonly Mock<IUnitOfWork> _mockUow;
         private readonly Mock<IAsyncRepository<int, City>> _mockCityRepo;
+        private readonly Mock<IMapper<City, CityDTO>> _mapper;
         private readonly string _cityName = "CityName";
 
         public CreateCity()
         {
             _mockUow = new Mock<IUnitOfWork>();
             _mockCityRepo = new Mock<IAsyncRepository<int, City>>();
+            _mapper = new Mock<IMapper<City, CityDTO>>();
         }
 
         [Fact]
-        public async Task InvokesCityRepositoryAddAsync()
+        public async Task InvokesCityRepositoryAddAsyncOnce()
         {
             //Arrange
             _mockCityRepo.Setup(x => x.AddAsync(It.IsAny<City>()));
@@ -36,7 +38,7 @@ namespace UnitTests.ApplicationCore.Services.CitiesServiceTests
         }
         
         [Fact]
-        public async Task InvokesUowSaveChanges()
+        public async Task InvokesUowSaveChangesOnce()
         {
             //Arrange
             _mockCityRepo.Setup(x => x.AddAsync(It.IsAny<City>()));

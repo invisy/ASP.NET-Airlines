@@ -29,13 +29,6 @@ namespace Airlines.Infrastructure
 
             services.AddDbContext<AppIdentityDbContext>(options =>
                 options.UseSqlServer(identityConnectionString));
-            
-            
-            /*services.AddDbContext<AirlinesContext>(options =>
-                options.UseInMemoryDatabase(databaseName: "Test"));
-
-            services.AddDbContext<AppIdentityDbContext>(options =>
-                options.UseInMemoryDatabase(databaseName: "TestIdentity"));*/
 
             return services;
         }
