@@ -20,6 +20,6 @@ services:
             Database: "AirlinesApplicationDb"
             IdentityDatabase: "AirlinesIdentityDb"
         ports:
-            - "8080:80"
+            - "80:80"
         depends_on:
             - ms-sql
