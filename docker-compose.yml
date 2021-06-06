@@ -1,0 +1,25 @@
+version: '3.4'
+services: 
+    ms-sql:
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        environment:
+            SA_PASSWORD: "MySuPeRsTrONGAirportPa$$w0rd"
+            ACCEPT_EULA: "Y"
+            MSSQL_PID: Express
+        ports:
+            - "1433:1433"
+    airport-web:
+        build:
+            dockerfile: Web/Dockerfile
+            context: .
+        environment:
+            DbServer: tcp:ms-sql-server
+            DbPort: "1433"
+            DbUser: "sa"
+            DbPassword: "MySuPeRsTrONGAirportPa$$w0rd"
+            Database: "AirlinesApplicationDb"
+            IdentityDatabase: "AirlinesIdentityDb"
+        ports:
+            - "8080:80"
+        depends_on:
+            - ms-sql

@@ -34,9 +34,20 @@ namespace Airlines.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string appConnectionString = Configuration.GetConnectionString("AirlinesApplicationDb");
-            string identityConnectionString = Configuration.GetConnectionString("AirlinesIdentityDb");
-
+            #if !DEBUG
+                string server = Configuration["DbServer"];
+                string port = Configuration["DbPort"];
+                string user = Configuration["DbUser"];
+                string password = Configuration["DbPassword"];
+                string applicationDatabaseName = Configuration["Database"];
+                string identityDatabaseName = Configuration["IdentityDatabase"];
+                
+                var appConnectionString = $"Server={server},{port};Initial Catalog={applicationDatabaseName};User ID={user};Password={password};Integrated Security=true";
+                var identityConnectionString = $"Server={server},{port};Initial Catalog={identityDatabaseName};User ID={user};Password={password};Integrated Security=true";
+            #else
+                string appConnectionString = Configuration.GetConnectionString("AirlinesApplicationDb");
+                string identityConnectionString = Configuration.GetConnectionString("AirlinesIdentityDb");
+            #endif
             services.BindCoreLayer();
             services.BindInfrastructureLayer(appConnectionString, identityConnectionString);
             
